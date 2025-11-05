@@ -1,5 +1,5 @@
 (function(){
-      emailjs.init("TmMyXzEh0wMxTkn5N"); // e.g. public_2r2avaSWWCbt2IsNW
+      emailjs.init("TmMyXzEh0wMxTkn5N");
   })();
 function addtocart(serviceName, servicePrice, ID) {
     const table =  document.getElementById("tablebody");
@@ -55,13 +55,12 @@ function addtocart(serviceName, servicePrice, ID) {
     cell3.className = "text-right";
 }
 $("#bookingform").on("submit", function(e){
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault();
       const userEmail = $("#email").val();
       const name = $("#name").val();
 
-      // ✅ Send the email via EmailJS
       emailjs.send("service_0x51frl", "template_yyupxlx", {
-          to_email: userEmail, // must match your template variable 
+          to_email: userEmail,
           name: name,
           time: new Date().toLocaleString(),
           status: "Booked Successfully",
