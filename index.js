@@ -58,10 +58,13 @@ $("#bookingform").on("submit", function(e){
     e.preventDefault();
       const userEmail = $("#email").val();
       const name = $("#name").val();
-
+      let allItems = $("#tablebody tr").map(function() {
+        return $(this).find("td").eq(1).text();
+        }).get().join(", ");
       emailjs.send("service_0x51frl", "template_yyupxlx", {
           to_email: userEmail,
           name: name,
+          message: `You booked ${allItems} with total amount of ${$("#totalamount").text()}`,
           time: new Date().toLocaleString(),
           status: "Booked Successfully",
       }).then(function(response){
