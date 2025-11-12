@@ -6,6 +6,7 @@ function addtocart(serviceName, servicePrice, ID) {
     const change = document.getElementById(ID);
     const total = document.getElementById("totalamount");
 
+    //if removing item from cart change text to add item and subtract in total amount
     if (change.innerText === "Remove Item") {
         change.innerText = "Add to cart";
         change.className = "bg-blue-100 text-blue-600 px-3 py-1 rounded-md text-sm hover:bg-blue-200";
@@ -20,7 +21,7 @@ function addtocart(serviceName, servicePrice, ID) {
         for (let i = 0; i < rows.length; i++) {
             if (rows[i].cells[1].innerText === serviceName) { // match service name
                 table.deleteRow(i);
-                break;
+                break; 
             }
         }
 
@@ -31,6 +32,7 @@ function addtocart(serviceName, servicePrice, ID) {
 
         return;
     }
+    //if adding item to cart change text to remove item and add in total amount
     let currentTotal = parseInt(total.innerText.replace("₹", ""));
     currentTotal += parseInt(servicePrice);
     total.innerText = "₹" + currentTotal;
@@ -38,7 +40,7 @@ function addtocart(serviceName, servicePrice, ID) {
     change.innerText = "Remove Item";
     change.className = "bg-red-100 text-red-600 px-3 py-1 rounded-md text-sm hover:bg-red-200";
 
-
+    //To create 3 columns for the table 
     const row = table.insertRow();
     const cell1 = row.insertCell(0);
     const cell2 = row.insertCell(1);
@@ -48,6 +50,7 @@ function addtocart(serviceName, servicePrice, ID) {
     cell2.innerText = serviceName;
     cell3.innerText = servicePrice;
 
+    //update the Sno. after adding a new row/item 
     for (let i = 0; i < table.rows.length; i++) {
         table.rows[i].cells[0].innerText = i + 1;
     }
